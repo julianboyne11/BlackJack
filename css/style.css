@@ -56,3 +56,11 @@ main {
   height: 40px;
   width: 100px
 }
+
+#player-section {
+  display: flex;
+  margin: 380px 135px;
+  height: 220px;
+  width: 400px;
+  border: 1px solid black;
+}
