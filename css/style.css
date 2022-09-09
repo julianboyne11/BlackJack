@@ -1,4 +1,4 @@
-html {
+* {
   margin: 0
 
 }
@@ -34,6 +34,11 @@ main {
   margin: -15px 0;
 }
 
+#place-bet {
+  margin-top: 25px;
+}
+
+
 .increase-decrease-button {
   padding-left: 20px;
   margin-top: 24px;
@@ -64,3 +69,28 @@ main {
   width: 400px;
   border: 1px solid black;
 }
+
+#computer-section {
+  display: flex;
+  margin: -1000px 135px;
+  height: 220px;
+  width: 400px;
+  border: 1px solid black;
+}
+
+.play-button {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 1150px 200px;
+  padding-right: 57px;
+}
+
+#stay-button {
+  margin-left: 320px;
+} 
+
+#hit-button {
+  margin: 0 30px;
+}
+
