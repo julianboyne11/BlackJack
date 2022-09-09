@@ -1,0 +1,39 @@
+html {
+  margin: 0
+
+}
+
+body {
+  background-color: grey;
+}
+
+#title {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  border: 2px solid black;
+  height: 650px;
+  width: 700px;
+}
+
+.bet-container {
+  flex-direction: flex;
+  flex-direction: row;
+  margin: 535px 0;
+  padding-right: 500px;
+  justify-content: left;
+}
+
+.bet {
+  font-size: 20px;
+  height: 30px;
+  display: flex;
+  margin: -20px 0;
+}
+
+.bet-button {
+  padding-left: 20px;
+  margin-top: 24px;
+}
