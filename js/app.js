@@ -22,6 +22,9 @@ const stayBtn = document.querySelector("#stay-button")
 
 /*---------------- Event Listeners------------------*/
 
+cashBtn.addEventListener("click", init)
+
+
 
 
 /*------------------ Functions ---------------------*/
@@ -51,9 +54,12 @@ init()
 
 //Create a function called “init” to initialize the game
 function init() {
+
+  deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+
   credits = 1000
   document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
-  
+
   bet = 100
   document.querySelector("#place-bet").textContent = `Place your Bet: ${bet = 100}`
 
@@ -69,7 +75,9 @@ function init() {
 
 //call a function called “render” to render the game
 
-//
+function render() {
+
+}
 
 //Create a render function
 
