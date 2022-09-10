@@ -28,7 +28,7 @@ cashBtn.addEventListener("click", cashOut)
 
 betBtn.addEventListener("click", placeBet)
 
-
+hitBtn.addEventListener("click", renderHit)
 
 /*------------------ Functions ---------------------*/
 
@@ -62,6 +62,10 @@ function init() {
 
   deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+  playerHand = []
+
+  computerHand = []
+
   credits = 1000
   document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
 
@@ -70,11 +74,13 @@ function init() {
 
   playSection.setAttribute("hidden", "")
 
+  winner = null
 
 
 
 
-  
+
+
 
   render()
   
@@ -89,17 +95,52 @@ function init() {
 ////call a function called “render” to render the game
 
 //Create a render function
-function render() {
+function render(cardHit) {
+  
+  shuffle(deck)
+
   
   
   
 
 }
 
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
 
-//-hides the betting function once you place a bet and reduce your total credits
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
 
-//-renders a card shuffling function
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+function renderHit(evt) {
+  if(deck.length > 0) {
+
+    let cardHit = deck.splice(0, 1)
+
+    playerHand.push(cardHit)
+
+    
+    render()
+  }
+}
+
+
+
+
+////-hides the betting function once you place a bet and reduce your total credits
+
+//// -renders a card shuffling function
 
 //renders if you “hit” card and add card to your hand
 
@@ -115,12 +156,11 @@ function render() {
 
 //
 
-//Create a Betting function
 function placeBet(evt) {
-  console.log(evt.target);
   betSection.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
 } 
+//Create a Betting function
 
 //That every time you want to bet more it reduce your total amount of credits
 
