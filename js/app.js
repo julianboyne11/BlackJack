@@ -53,19 +53,19 @@ init()
 function init() {
   credits = 1000
   document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
+  
   bet = 100
   document.querySelector("#place-bet").textContent = `Place your Bet: ${bet = 100}`
-  
 
-  
+  render()
   
 }
 
 ////It show your available credits
 
-///The bet that you want to make
+/////The bet that you want to make
 
-//It show a cash out to leave the table
+////It show a cash out to leave the table
 
 //call a function called “render” to render the game
 
