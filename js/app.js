@@ -158,4 +158,3 @@ function placeBet(evt) {
 function cashOut(evt) {
   init()
   betSection.removeAttribute("hidden")
-}
