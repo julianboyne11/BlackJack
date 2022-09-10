@@ -117,7 +117,7 @@ function render() {
 
 //Create a Betting function
 function placeBet(evt) {
-  console.log(evt.target, "clicked");
+  console.log(evt.target);
   betSection.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
 } 
@@ -158,3 +158,4 @@ function placeBet(evt) {
 function cashOut(evt) {
   init()
   betSection.removeAttribute("hidden")
+}
