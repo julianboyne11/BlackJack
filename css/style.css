@@ -64,7 +64,7 @@ main {
 
 #player-section {
   display: flex;
-  margin: 380px 135px;
+  margin: 220px 135px;
   height: 220px;
   width: 400px;
   border: 1px solid black;
@@ -72,7 +72,7 @@ main {
 
 #computer-section {
   display: flex;
-  margin: -1000px 135px;
+  margin: -845px 135px;
   height: 220px;
   width: 400px;
   border: 1px solid black;
@@ -82,7 +82,7 @@ main {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 1150px 200px;
+  margin: 1180px 200px;
   padding-right: 57px;
 }
 

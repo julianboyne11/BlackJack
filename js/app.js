@@ -9,7 +9,15 @@ let computerHand = []
 
 
 /*---------- Cached Element References -------------*/
-
+const playerCard = document.querySelector("#player-section")
+const deckEl = document.querySelector("#deck")
+const computerCard = document.querySelector("#computer-section")
+const cashBtn = document.querySelector("#cash-out-button")
+const betBtn = document.querySelector("#bet-button")
+const increaseBtn = document.querySelector("#increase-bet")
+const decreaseBtn = document.querySelector("#decrease-bet")
+const hitBtn = document.querySelector("#hit-button")
+const stayBtn = document.querySelector("#stay-button")
 
 
 /*---------------- Event Listeners------------------*/
