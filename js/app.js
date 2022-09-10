@@ -2,7 +2,7 @@
 
 
 /*---------------- Variables (state) --------------*/
-let turn, credits, winner
+let turn, credits, winner, bet
 let deck = []
 let playerHand= []
 let computerHand = []
@@ -26,6 +26,8 @@ const stayBtn = document.querySelector("#stay-button")
 
 /*------------------ Functions ---------------------*/
 
+init()
+
 
 ////Add some state variables called:
 
@@ -43,15 +45,25 @@ const stayBtn = document.querySelector("#stay-button")
 
 
 
-//Store catch elements references
+////Store catch elements references
 
 
 
 //Create a function called “init” to initialize the game
+function init() {
+  credits = 1000
+  document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
+  bet = 100
+  document.querySelector("#place-bet").textContent = `Place your Bet: ${bet = 100}`
+  
 
-//It show your available credits
+  
+  
+}
 
-//The bet that you want to make
+////It show your available credits
+
+///The bet that you want to make
 
 //It show a cash out to leave the table
 
