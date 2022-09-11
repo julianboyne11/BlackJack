@@ -193,7 +193,12 @@ function betMore (evt) {
   render()
 }
 
-
+function betLess(evt) {
+  if(bet > 0) {
+  placeBet.textContent = `Place your Bet!: ${bet -= 5}`
+  }
+  render()
+}
 
 
 
