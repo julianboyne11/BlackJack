@@ -65,19 +65,16 @@ main {
   width: 100px
 }
 
-#player-section {
+#hit-card {
   display: flex;
   margin: 220px 135px;
-  height: 220px;
-  width: 400px;
   border: 1px solid black;
 }
 
 #computer-section {
   display: flex;
   margin: -845px 135px;
-  height: 220px;
-  width: 400px;
+
   border: 1px solid black;
 }
 
@@ -95,5 +92,9 @@ main {
 
 #hit-button {
   margin: 0 30px;
+}
+
+div {
+  margin: 80px 200px;
 }
 

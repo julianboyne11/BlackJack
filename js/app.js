@@ -11,9 +11,10 @@ let computerHand = []
 /*---------- Cached Element References -------------*/
 const playSection = document.querySelector(".play-section")
 const betSection = document.querySelector(".bets")
-const playerCard = document.querySelector("#player-section")
+const playerCard = document.querySelector("#hit-card")
 const deckEl = document.querySelector("#deck")
 const computerCard = document.querySelector("#computer-section")
+const placeBet = document.querySelector("#place-bet")
 const cashBtn = document.querySelector("#cash-out-button")
 const betBtn = document.querySelector("#bet-button")
 const increaseBtn = document.querySelector("#increase-bet")
@@ -26,9 +27,13 @@ const stayBtn = document.querySelector("#stay-button")
 
 cashBtn.addEventListener("click", cashOut)
 
-betBtn.addEventListener("click", placeBet)
+betBtn.addEventListener("click", enterBet)
 
 hitBtn.addEventListener("click", renderHit)
+
+increaseBtn.addEventListener("click", betMore)
+
+decreaseBtn.addEventListener("click", betLess)
 
 /*------------------ Functions ---------------------*/
 
@@ -66,13 +71,14 @@ function init() {
 
   computerHand = []
 
-  credits = 1000
   document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
 
-  bet = 100
-  document.querySelector("#place-bet").textContent = `Place your Bet: ${bet = 100}`
+  placeBet.textContent = `Place your Bet!: ${bet = 100}`
+
 
   playSection.setAttribute("hidden", "")
+
+  betSection.removeAttribute("hidden")
 
   winner = null
 
@@ -98,8 +104,14 @@ function init() {
 function render(cardHit) {
   
   shuffle(deck)
-
   
+  playerCard.classList.add(cardHit)
+  
+
+
+  if(bet === 0) {
+    placeBet.textContent = `Please enter Bet!: ${bet = 0}`
+  }
   
   
 
@@ -126,12 +138,21 @@ function shuffle(array) {
 function renderHit(evt) {
   if(deck.length > 0) {
 
+    const secondCard = document.createElement("div")
+    if(playerHand.length > 1) {
+  
+      playerCard.appendChild(secondCard)
+    }
+
     let cardHit = deck.splice(0, 1)
+
+    console.log(cardHit);
 
     playerHand.push(cardHit)
 
-    
-    render()
+    console.log(deck, "deck");
+    console.log(playerHand, "my hand");
+    render(cardHit)
   }
 }
 
@@ -156,11 +177,25 @@ function renderHit(evt) {
 
 //
 
-function placeBet(evt) {
+function enterBet(evt) {
+
   betSection.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
 } 
 //Create a Betting function
+
+function betMore (evt) {
+  if(bet < credits) {
+  placeBet.textContent = `Place your Bet!: ${bet += 5}`
+  }
+  
+
+  render()
+}
+
+
+
+
 
 //That every time you want to bet more it reduce your total amount of credits
 
@@ -197,5 +232,5 @@ function placeBet(evt) {
 //if player > than computer, player win
 function cashOut(evt) {
   init()
-  betSection.removeAttribute("hidden")
+  
 }
