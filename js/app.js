@@ -1,14 +1,16 @@
 /*------------------- Constants --------------------*/
+/*------------------- Constants --------------------*/
 
+const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 /*---------------- Variables (state) --------------*/
-let turn, credits, winner, bet
-let deck = []
+let turn, credits, winner, bet, shuffleDeck
 let playerHand= []
 let computerHand = []
 
 
 /*---------- Cached Element References -------------*/
+const totalCredits = document.querySelector("#total-credit")
 const playSection = document.querySelector(".play-section")
 const betSection = document.querySelector(".bets")
 const playerCard = document.querySelector("#hit-card")
@@ -65,13 +67,14 @@ function init() {
 
   
 
-  deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  shuffleDeck = shuffle(deck)
+  
 
   playerHand = []
 
   computerHand = []
 
-  document.querySelector("#total-credit").textContent = `Total Credits: ${credits = 1000}`
+  totalCredits.textContent = `Total Credits: ${credits = 900}`
 
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
 
@@ -102,19 +105,8 @@ function init() {
 
 //Create a render function
 function render(cardHit) {
-  
-  shuffle(deck)
-  
   playerCard.classList.add(cardHit)
-  
-
-
-  if(bet === 0) {
-    placeBet.textContent = `Please enter Bet!: ${bet = 0}`
-  }
-  
-  
-
+  placeBet.textContent = `Please enter Bet! The current bet is: ${bet}`
 }
 
 function shuffle(array) {
@@ -178,24 +170,26 @@ function renderHit(evt) {
 //
 
 function enterBet(evt) {
-
-  betSection.setAttribute("hidden", "")
+  placeBet.textContent = `Total Bet: ${bet}`
+  increaseBtn.setAttribute("hidden", "")
+  decreaseBtn.setAttribute("hidden", "")
+  betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
+  render()
+  
 } 
 //Create a Betting function
 
 function betMore (evt) {
   if(bet < credits) {
-  placeBet.textContent = `Place your Bet!: ${bet += 5}`
+    bet += 5
   }
-  
-
   render()
 }
 
 function betLess(evt) {
   if(bet > 0) {
-  placeBet.textContent = `Place your Bet!: ${bet -= 5}`
+    bet -= 5
   }
   render()
 }
@@ -237,5 +231,6 @@ function betLess(evt) {
 //if player > than computer, player win
 function cashOut(evt) {
   init()
+  betBtn.removeAttribute("hidden")
   
 }

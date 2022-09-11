@@ -91,10 +91,9 @@ main {
 } 
 
 #hit-button {
-  margin: 0 30px;
+  margin: 1250px 30px;
 }
 
-div {
-  margin: 80px 200px;
+.play-section > div {
+  margin: -980px 150px;
 }
-
