@@ -71,6 +71,8 @@ function init() {
   
   playerHand = []
 
+  turn = 1
+
   computerHand = []
 
   totalCredits.textContent = `Total Credits: ${credits = 900}`
@@ -83,12 +85,6 @@ function init() {
   betSection.removeAttribute("hidden")
 
   winner = null
-
-
-
-
-
-
 
   render()
   
@@ -120,12 +116,26 @@ function newHand(card) {
 
 //Create a render function
 function render() {
-  // playerCard.classList.add(cardHit)
+
   placeBet.textContent = `Please enter Bet! The current bet is: ${bet}`
-  // playerHand.forEach((card, idx) => {
-  //   renderHit()
-  // })
+
+  totalCredits.textContent = `Total Credits: ${credits}`
+
+  // if(turn === 1) {
+  //   playerCard.appendChild(newCard)
+  // } else if (turn === -1) {
+  //   computerCard.appendChild(newCard)
+  // }
+
+  
 }
+
+// function appendCard(card) {
+//   let newCard = document.createElement("div")
+//   newCard.classList.add("card")
+  
+//   render()
+// } 
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -149,17 +159,17 @@ function renderHit(card, idx) {
   if(deck.length > 0) {
     
     
-    let cardHit = shuffleDeck.splice(0, 1)[0]    
+    let cardHit = shuffleDeck.splice(0, 1)   
     
     playerHand.push(cardHit)
     console.log(playerHand)
     
-    let newCard = document.createElement("div")
-    if(playerHand > 1) {
-    newCard.classList.add("container", cardHit)
-    cardContainer.appendChild(newCard)
-    }
-    render(cardHit)
+    // let newCard = document.createElement("div")
+    // if(playerHand > 1) {
+    // newCard.classList.add("container", cardHit)
+    // cardContainer.appendChild(newCard)
+    // }
+    render()
   }
 }
 
@@ -200,6 +210,7 @@ function enterBet(evt) {
 function betMore (evt) {
   if(bet < credits) {
     bet += 5
+    credits -= 5
   }
   render()
 }
@@ -207,6 +218,7 @@ function betMore (evt) {
 function betLess(evt) {
   if(bet > 0) {
     bet -= 5
+    credits += 5
   }
   render()
 }
