@@ -10,10 +10,12 @@ let computerHand = []
 
 
 /*---------- Cached Element References -------------*/
+const cardContainer = document.querySelector(".container")
+
 const totalCredits = document.querySelector("#total-credit")
 const playSection = document.querySelector(".play-section")
 const betSection = document.querySelector(".bets")
-const playerCard = document.querySelector("#hit-card")
+const playerCard = document.querySelector("#player-card")
 const deckEl = document.querySelector("#deck")
 const computerCard = document.querySelector("#computer-section")
 const placeBet = document.querySelector("#place-bet")
@@ -63,13 +65,10 @@ init()
 
 
 //Create a function called “init” to initialize the game
-function init() {
-
-  
+function init() {  
 
   shuffleDeck = shuffle(deck)
   
-
   playerHand = []
 
   computerHand = []
@@ -95,6 +94,22 @@ function init() {
   
 }
 
+
+function newHand(card) {
+  let givePlayerCard = shuffleDeck.splice(0, 2)     
+  console.log(givePlayerCard);
+    playerHand.push(givePlayerCard)
+    console.log(playerHand, "player");
+
+  let giveComputerCard = shuffleDeck.splice(0, 2)
+  console.log(giveComputerCard);
+    computerHand.push(giveComputerCard)
+    console.log(computerHand, "computer");
+  
+  //add two cards into the computerHand
+  //add two cards into the playerHand
+}
+
 ////It show your available credits
 
 /////The bet that you want to make
@@ -104,9 +119,12 @@ function init() {
 ////call a function called “render” to render the game
 
 //Create a render function
-function render(cardHit) {
-  playerCard.classList.add(cardHit)
+function render() {
+  // playerCard.classList.add(cardHit)
   placeBet.textContent = `Please enter Bet! The current bet is: ${bet}`
+  // playerHand.forEach((card, idx) => {
+  //   renderHit()
+  // })
 }
 
 function shuffle(array) {
@@ -127,26 +145,24 @@ function shuffle(array) {
   return array;
 }
 
-function renderHit(evt) {
+function renderHit(card, idx) {
   if(deck.length > 0) {
-
-    const secondCard = document.createElement("div")
-    if(playerHand.length > 1) {
-  
-      playerCard.appendChild(secondCard)
-    }
-
-    let cardHit = deck.splice(0, 1)
-
-    console.log(cardHit);
-
+    
+    
+    let cardHit = shuffleDeck.splice(0, 1)[0]    
+    
     playerHand.push(cardHit)
-
-    console.log(deck, "deck");
-    console.log(playerHand, "my hand");
+    console.log(playerHand)
+    
+    let newCard = document.createElement("div")
+    if(playerHand > 1) {
+    newCard.classList.add("container", cardHit)
+    cardContainer.appendChild(newCard)
+    }
     render(cardHit)
   }
 }
+
 
 
 
@@ -175,6 +191,7 @@ function enterBet(evt) {
   decreaseBtn.setAttribute("hidden", "")
   betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
+  newHand()
   render()
   
 } 
