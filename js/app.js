@@ -41,6 +41,8 @@ const increaseBtn = document.querySelector("#increase-bet")
 const decreaseBtn = document.querySelector("#decrease-bet")
 const hitBtn = document.querySelector("#hit-button")
 const stayBtn = document.querySelector("#stay-button")
+const messageEl = document.querySelector("#message")
+
 
 
 /*---------------- Event Listeners------------------*/
