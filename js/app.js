@@ -3,6 +3,22 @@
 
 const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+const blackJack = [
+  ["dA", "dK"],
+  ["dA", "dQ"],
+  ["dA", "dJ"],
+  ["hA", "hQ"],
+  ["hA", "hK"],
+  ["hA", "hJ"],
+  ["cA", "cQ"],
+  ["cA", "cK"],
+  ["cA", "cJ"],
+  ["sA", "sQ"],
+  ["sA", "sK"],
+  ["sA", "sJ"]
+]
+
+
 /*---------------- Variables (state) --------------*/
 let turn, credits, winner, bet, shuffleDeck
 let playerHand= []
@@ -147,6 +163,8 @@ function render() {
 
 
   
+
+  
 }
 
 
@@ -169,7 +187,7 @@ function shuffle(array) {
   return array;
 }
 
-//Add a hit function 
+////Add a hit function 
 
 //Whenever you click hit, it push a card to your hand
 function renderHit(card, idx) {
@@ -193,7 +211,7 @@ function renderHit(card, idx) {
 
 //// -renders a card shuffling function
 
-//renders if you “hit” card and add card to your hand
+////renders if you “hit” card and add card to your hand
 
 //render if you “stay” and should give the turn to the computer
 
@@ -203,9 +221,10 @@ function renderHit(card, idx) {
 
 //
 
-//Create an Object called “cards” and add the different card and their respective values 
+////Create an Object called “cards” and add the different card and their respective values 
 
 //
+//Create a Betting function
 
 function enterBet(evt) {
   placeBet.textContent = `Total Bet: ${bet}`
@@ -217,8 +236,8 @@ function enterBet(evt) {
   render()
   
 } 
-//Create a Betting function
 
+//That every time you want to bet more it reduce your total amount of credits
 function betMore (evt) {
   if(bet < credits) {
     bet += 5
@@ -227,6 +246,8 @@ function betMore (evt) {
   render()
 }
 
+
+//And when you want to bet less, it increases your total amount of credits
 function betLess(evt) {
   if(bet > 0) {
     bet -= 5
@@ -237,9 +258,6 @@ function betLess(evt) {
 
 
 
-//That every time you want to bet more it reduce your total amount of credits
-
-//And when you want to bet less, it increases your total amount of credits
 
 //render()
 
@@ -253,11 +271,14 @@ function betLess(evt) {
 //Whenever you click stay, it changes the turn until there’s a winner
 
 function stay(evt) {
-  turn *= -1
+  turn = -1
+  
 }
 
 
-
+function getWinner() {
+  
+}
 
 //add a winner function
 
