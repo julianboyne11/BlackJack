@@ -86,26 +86,26 @@ init()
 
 //Create a function called “init” to initialize the game
 function init() {  
-
+  
   shuffleDeck = shuffle(deck)
   
   playerHand = []
-
+  
   turn = 1
-
+  
   computerHand = []
-
+  
   totalCredits.textContent = `Total Credits: ${credits = 900}`
-
+  
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
-
-
+  
+  
   playSection.setAttribute("hidden", "")
 
   betSection.removeAttribute("hidden")
-
+  
   winner = null
-
+  
   render()
   
 }
@@ -116,16 +116,16 @@ function newHand(card) {
   givePlayerCard.forEach(card => {
     playerHand.push(card)
     console.log(givePlayerCard);
-
+    
   })   
-    console.log(playerHand, "player");
-
+  console.log(playerHand, "player");
+  
   let giveComputerCard = shuffleDeck.splice(0, 2)
   giveComputerCard.forEach(card => {
     computerHand.push(card)
     console.log(giveComputerCard);
   })
-    console.log(computerHand, "computer");
+  console.log(computerHand, "computer");
   
   //add two cards into the computerHand
   //add two cards into the playerHand
@@ -142,9 +142,9 @@ function newHand(card) {
 
 //Create a render function
 function render() {
-
+  
   playerCard.innerHTML= ""
-
+  
   computerCard.innerHTML= ""
   
   placeBet.textContent = `Please enter Bet! The current bet is: ${bet}`
@@ -152,20 +152,18 @@ function render() {
   totalCredits.textContent = `Total Credits: ${credits}`
   
   playerHand.forEach(card => {
-      let newCard = document.createElement("div")
-      newCard.classList.add("card", "large", card)
-      playerCard.appendChild(newCard)
+    let newCard = document.createElement("div")
+    newCard.classList.add("card", "large", card)
+    playerCard.appendChild(newCard)
   })
-
+  
   computerHand.forEach(card => {
     let newCard = document.createElement("div")
     newCard.classList.add("card", "large", card)
     computerCard.appendChild(newCard)
   })
-
-
   
-
+  
   
 }
 
@@ -176,34 +174,70 @@ function shuffle(array) {
 
   // While there remain elements to shuffle.
   while (currentIndex != 0) {
-
+    
     // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
+    
     // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
+    }
+    
+    return array;
   }
+  
+  ////Add a hit function 
+  
+  //Whenever you click hit, it push a card to your hand
+  function renderHit(card, idx) {
+    if(deck.length > 0) {
+      
+      
+      let cardHit = shuffleDeck.splice(0, 1)[0]  
+      
+      playerHand.push(cardHit)
+      console.log(playerHand)
 
-  return array;
+      let dealerSum = checkCardValue(computerHand)
+      console.log(dealerSum);
+      let playerSum = checkCardValue(playerHand)
+      console.log(playerSum);
+      
+      render()
+    }
+  }
+  
+
+  
+  function checkCardValue(cards) {
+    let handTotal = 0
+    cards.forEach(card => {
+    let cardValue = card.slice(1, 3)
+    // let value = parseInt(cardValue)
+    // console.log(value);
+    if(cardValue === "A") {
+        handTotal += 11
+      } else if(cardValue === "K") {
+        handTotal += 10
+      } else if(cardValue === "Q") {
+        handTotal += 10
+      } else if(cardValue === "J") {
+        handTotal += 10
+      } else {
+        
+      handTotal += parseInt(cardValue)
+      }  
+    })
+  return handTotal
 }
 
-////Add a hit function 
 
-//Whenever you click hit, it push a card to your hand
-function renderHit(card, idx) {
-  if(deck.length > 0) {
-    
-    
-    let cardHit = shuffleDeck.splice(0, 1)[0]  
-    
-    playerHand.push(cardHit)
-    console.log(playerHand)
-    
-    render()
-  }
-}
+
+
+
+
+
 
 
 
@@ -274,6 +308,10 @@ function betLess(evt) {
 
 function stay(evt) {
   turn = -1
+  let dealerSum = checkCardValue(computerHand)
+      console.log(dealerSum);
+      let playerSum = checkCardValue(playerHand)
+      console.log(playerSum);
   
 }
 
