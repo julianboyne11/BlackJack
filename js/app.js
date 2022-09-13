@@ -343,6 +343,9 @@ function stay(evt) {
     if(playerSum > 21) {
       messageEl.textContent = "You Lose the Hand!"
       bet -= bet
+    } else if(dealerSum > 21) {
+      messageEl.textContent = "You Win the Hand!"
+      credit += bet *= 2
     } 
 
 
