@@ -172,11 +172,9 @@ function render() {
   })
   if (winner === null) {
     messageEl.textContent = `Choose if You want to Hit or Stay`
+  } 
+  
 
-  } else {
-  let player = turn === 1 ? 'Player' : 'Dealer'
-  messageEl.textContent = `${winner === "T" ? "It's a tie!" : "Congrats! " + player + " won!"}`
-}
 
   playerTotal.textContent = `${checkCardValue(playerHand)}`
 
@@ -333,44 +331,44 @@ function stay(evt) {
       console.log(dealerSum);
       let playerSum = checkCardValue(playerHand)
       console.log(playerSum);
-  winner = getWinner()
+      // let player = turn === 1 ? 'Player' : 'Dealer'
+      // messageEl.textContent = `${winner === "T" ? "It's a tie!" : "Congrats! " + player + " won!"}`
+      getWinner()
     }
     
     //add a winner function
+    
+  function getWinner() {
 
-function getWinner() {
-  // blackJack.forEach(combo => {
-  //   //we want to check every posible blackJack and if there's a blackJack on one of the hand return winner
-  //   if (Math.abs(playerHand[combo[0]] + playerHand[combo[1]]) === 2) {
-  //     return winner = "Player"
-  //   } else if(Math.abs(computerHand[combo[0]] + computerHand[combo[1]]) === 2) {
-  //     return winner = "Dealer"
-  //   }
-  // })
-  // if(getBlackJackWinner(playerHand)){
-  //   winner = turn
-  // } else if(getBlackJackWinner(computerHand)){
-  //   winner = turn
-  // }
+    if(playerSum > 21) {
+      messageEl.textContent = "You Lose the Hand!"
+      bet -= bet
+    } 
 
 
+    //we want to check every posible blackJack and if there's a blackJack on one of the hand return winner
+    
+    //if playerSum > 21 automatically return a lose and vicerversa 
+    
+    
+    
+    
+  }
+  function getBlackJackWinner(cards) {
+  let blackJackHand = null
+  cards.forEach(card => {
+    let cardValue = card.slice(1, 3)
+    console.log(cardValue);
+    if(cardValue === "A" && "J" || cardValue === "J" && "A" || cardValue === "A" && "K" || cardValue === "K" && "A" || cardValue === "A" && "Q" || cardValue === "Q" && "A" ){
+      winner = turn
+    }
+  })
+  return blackJackHand
 }
-
-  //if playerSum > 21 automatically return a lose and vicerversa 
+  
   //if playerSum > than dealerSum, winner = player
   //if playerSum < than dealerSum, winner = dealer
   //if both hands have blackJack, return "T"
-  // function getBlackJackWinner(cards) {
-  //   let blackJack = null
-  //   cards.forEach(card => {
-  //     let cardValue = card.slice(1, 3)
-  //     console.log(cardValue);
-  //     if(cardValue === "A" && "J" || cardValue === "J" && "A" || cardValue === "A" && "K" || cardValue === "K" && "A" || cardValue === "A" && "Q" || cardValue === "Q" && "A" ){
-  //       blackJack = winner
-  //     }
-  //   })
-  //   return blackJack
-  // }
   
 
 
