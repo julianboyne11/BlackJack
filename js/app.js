@@ -3,30 +3,35 @@
 
 const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
-const blackJack = [
-  ["dA", "dK"],
-  ["dA", "dQ"],
-  ["dA", "dJ"],
-  ["hA", "hQ"],
-  ["hA", "hK"],
-  ["hA", "hJ"],
-  ["cA", "cQ"],
-  ["cA", "cK"],
-  ["cA", "cJ"],
-  ["sA", "sQ"],
-  ["sA", "sK"],
-  ["sA", "sJ"]
-]
+// const blackJack = [
+//   ["dA", "dK"],
+//   ["dA", "dQ"],
+//   ["dA", "dJ"],
+//   ["hA", "hQ"],
+//   ["hA", "hK"],
+//   ["hA", "hJ"],
+//   ["cA", "cQ"],
+//   ["cA", "cK"],
+//   ["cA", "cJ"],
+//   ["sA", "sQ"],
+//   ["sA", "sK"],
+//   ["sA", "sJ"]
+// ]
+
+
 
 
 /*---------------- Variables (state) --------------*/
-let turn, credits, winner, bet, shuffleDeck
+let turn, credits, winner, bet, shuffleDeck, dealerSum, playerSum
 let playerHand= []
 let computerHand = []
 
 
+
 /*---------- Cached Element References -------------*/
 const cardContainer = document.querySelector(".container")
+const dealerTotal = document.querySelector("#computer-sum")
+const playerTotal = document.querySelector("#player-sum")
 
 const totalCredits = document.querySelector("#total-credit")
 const playSection = document.querySelector(".play-section")
@@ -84,10 +89,11 @@ init()
 
 
 
-//Create a function called “init” to initialize the game
+////Create a function called “init” to initialize the game
 function init() {  
   
   shuffleDeck = shuffle(deck)
+
   
   playerHand = []
   
@@ -126,9 +132,11 @@ function newHand(card) {
     console.log(giveComputerCard);
   })
   console.log(computerHand, "computer");
+
+  winner = getWinner()
   
-  //add two cards into the computerHand
-  //add two cards into the playerHand
+  ////add two cards into the computerHand
+  ////add two cards into the playerHand
   render()
 }
 
@@ -140,7 +148,7 @@ function newHand(card) {
 
 ////call a function called “render” to render the game
 
-//Create a render function
+////Create a render function
 function render() {
   
   playerCard.innerHTML= ""
@@ -162,7 +170,19 @@ function render() {
     newCard.classList.add("card", "large", card)
     computerCard.appendChild(newCard)
   })
-  
+  if (winner === null) {
+    messageEl.textContent = `Choose if You want to Hit or Stay`
+
+  } else {
+  let player = turn === 1 ? 'Player' : 'Dealer'
+  messageEl.textContent = `${winner === "T" ? "It's a tie!" : "Congrats! " + player + " won!"}`
+}
+
+  playerTotal.textContent = `${checkCardValue(playerHand)}`
+
+  dealerTotal.textContent = `${checkCardValue(computerHand)}`
+
+
   
   
 }
@@ -189,7 +209,7 @@ function shuffle(array) {
   
   ////Add a hit function 
   
-  //Whenever you click hit, it push a card to your hand
+  ////Whenever you click hit, it push a card to your hand
   function renderHit(card, idx) {
     if(deck.length > 0) {
       
@@ -199,11 +219,11 @@ function shuffle(array) {
       playerHand.push(cardHit)
       console.log(playerHand)
 
-      let dealerSum = checkCardValue(computerHand)
+      dealerSum = checkCardValue(computerHand)
       console.log(dealerSum);
-      let playerSum = checkCardValue(playerHand)
+      playerSum = checkCardValue(playerHand)
       console.log(playerSum);
-      
+      winner = getWinner()
       render()
     }
   }
@@ -214,8 +234,7 @@ function shuffle(array) {
     let handTotal = 0
     cards.forEach(card => {
     let cardValue = card.slice(1, 3)
-    // let value = parseInt(cardValue)
-    // console.log(value);
+
     if(cardValue === "A") {
         handTotal += 11
       } else if(cardValue === "K") {
@@ -230,6 +249,8 @@ function shuffle(array) {
       }  
     })
   return handTotal
+
+  
 }
 
 
@@ -251,7 +272,7 @@ function shuffle(array) {
 
 //render if you “stay” and should give the turn to the computer
 
-//render the total amount of your card value
+////render the total amount of your card value
 
 //render winner
 
@@ -312,21 +333,52 @@ function stay(evt) {
       console.log(dealerSum);
       let playerSum = checkCardValue(playerHand)
       console.log(playerSum);
-  
-}
-
+  winner = getWinner()
+    }
+    
+    //add a winner function
 
 function getWinner() {
-  
+  // blackJack.forEach(combo => {
+  //   //we want to check every posible blackJack and if there's a blackJack on one of the hand return winner
+  //   if (Math.abs(playerHand[combo[0]] + playerHand[combo[1]]) === 2) {
+  //     return winner = "Player"
+  //   } else if(Math.abs(computerHand[combo[0]] + computerHand[combo[1]]) === 2) {
+  //     return winner = "Dealer"
+  //   }
+  // })
+  // if(getBlackJackWinner(playerHand)){
+  //   winner = turn
+  // } else if(getBlackJackWinner(computerHand)){
+  //   winner = turn
+  // }
+
+
 }
 
-//add a winner function
+  //if playerSum > 21 automatically return a lose and vicerversa 
+  //if playerSum > than dealerSum, winner = player
+  //if playerSum < than dealerSum, winner = dealer
+  //if both hands have blackJack, return "T"
+  // function getBlackJackWinner(cards) {
+  //   let blackJack = null
+  //   cards.forEach(card => {
+  //     let cardValue = card.slice(1, 3)
+  //     console.log(cardValue);
+  //     if(cardValue === "A" && "J" || cardValue === "J" && "A" || cardValue === "A" && "K" || cardValue === "K" && "A" || cardValue === "A" && "Q" || cardValue === "Q" && "A" ){
+  //       blackJack = winner
+  //     }
+  //   })
+  //   return blackJack
+  // }
+  
 
-//create a BlackJack combo
+
+////create a BlackJack combo
 
 //check the total amount of each hand 
 
-//if the player has more than 21, automatically return because you loose
+////if the player has more than 21, automatically return because you loose
 
 //if computer > than player, return player loose
 
