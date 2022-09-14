@@ -133,7 +133,7 @@ function newHand(card) {
   })
   console.log(computerHand, "computer");
 
-  winner = getWinner()
+  getWinner()
   
   ////add two cards into the computerHand
   ////add two cards into the playerHand
@@ -180,9 +180,18 @@ function render() {
 
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
 
+  // if(getWinner()) {
+  //   if(renderWin()) {
+  //     messageEl.textContent = "You win the Hand!"
+  //   } else if(renderLoss()) {
+  //     messageEl.textContent = "You lose the Hand!"
+  //   } else {
+  //     renderPush()
+  //     messageEl.textContent = "Push"
+  //   }
+  // }
 
-  
-  
+
 }
 
 
@@ -338,25 +347,62 @@ function stay(evt) {
     
     //add a winner function
     
+    //if playerSum > 21 automatically return a lose and vicerversa 
   function getWinner() {
-
-    if(playerSum > 21) {
-      messageEl.textContent = "You Lose the Hand!"
+    if(renderWin()) {
+      bet *= 2
+      credits += bet
+    }
+    else if(renderLoss()) {
       bet -= bet
-    } else if(dealerSum > 21) {
-      messageEl.textContent = "You Win the Hand!"
-      credit += bet *= 2
-    } 
+    }
+    else {
+      renderPush() 
+      bet = bet
+    }
+  render()
+  }
+
+    function renderWin() {
+      winner = null
+      if(dealerSum > 21) {
+        return 
+    } else if(playerSum > dealerSum) {
+      return 
+    }
+    render()
+  }
+
+    function renderLoss() {
+      loser = null
+      if(playerSum > 21) {
+    
+    } else if( playerSum < dealerSum) {
+      
+    }
+    return loser
+    render()
+  }
+
+    function renderPush() {
+      push = null
+      if(playerSum === dealerSum) {
+      }
+      return  push
+      render()
+    }
 
 
     //we want to check every posible blackJack and if there's a blackJack on one of the hand return winner
     
-    //if playerSum > 21 automatically return a lose and vicerversa 
+    //if playerSum > than dealerSum, winner = player
+    //if playerSum < than dealerSum, winner = dealer
+    //if both hands have blackJack, return "T"
     
     
     
     
-  }
+  
   function getBlackJackWinner(cards) {
   let blackJackHand = null
   cards.forEach(card => {
@@ -369,9 +415,6 @@ function stay(evt) {
   return blackJackHand
 }
   
-  //if playerSum > than dealerSum, winner = player
-  //if playerSum < than dealerSum, winner = dealer
-  //if both hands have blackJack, return "T"
   
 
 
