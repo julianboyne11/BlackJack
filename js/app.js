@@ -22,7 +22,7 @@ const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
 
 
 /*---------------- Variables (state) --------------*/
-let turn, credits, winner, bet, shuffleDeck, dealerSum, playerSum
+let turn, credits, winner, bet, shuffleDeck,loser, push, dealerSum, playerSum
 let playerHand= []
 let computerHand = []
 
@@ -133,7 +133,7 @@ function newHand(card) {
   })
   console.log(computerHand, "computer");
 
-  getWinner()
+
   
   ////add two cards into the computerHand
   ////add two cards into the playerHand
@@ -170,9 +170,7 @@ function render() {
     newCard.classList.add("card", "large", card)
     computerCard.appendChild(newCard)
   })
-  if (winner === null) {
-    messageEl.textContent = `Choose if You want to Hit or Stay`
-  } 
+  
   
 
 
@@ -180,18 +178,34 @@ function render() {
 
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
 
-  // if(getWinner()) {
-  //   if(renderWin()) {
-  //     messageEl.textContent = "You win the Hand!"
-  //   } else if(renderLoss()) {
-  //     messageEl.textContent = "You lose the Hand!"
-  //   } else {
-  //     renderPush()
-  //     messageEl.textContent = "Push"
-  //   }
-  // }
+  if(winner) {
+    renderMess()
+  } else if(loser) {
+    renderMess()
+  } else if(push) {
+    renderMess()
+  }
 
+  console.log(winner, "Winner");
 
+  console.log(loser, "loser");
+
+  console.log(push, "push");
+  
+}
+function renderMess() {
+  if(winner) {
+    messageEl.textContent = "You win the Hand!"
+  }
+  if(loser) {
+    messageEl.textContent = "You lose the Hand!"
+  }
+  if(push) {
+    messageEl.textContent = "Push!"
+  }
+  else {
+    messageEl.textContent = "Hit or Stay?" 
+  }
 }
 
 
@@ -230,7 +244,11 @@ function shuffle(array) {
       console.log(dealerSum);
       playerSum = checkCardValue(playerHand)
       console.log(playerSum);
-      winner = getWinner()
+      if(playerSum > 21) {
+        loser = true
+        messageEl.textContent = "Busted"
+        hitBtn.setAttribute("hidden", "")
+      }
       render()
     }
   }
@@ -244,28 +262,24 @@ function shuffle(array) {
 
     if(cardValue === "A") {
         handTotal += 11
-      } else if(cardValue === "K") {
+      }
+      else if(cardValue === "K") {
         handTotal += 10
       } else if(cardValue === "Q") {
         handTotal += 10
       } else if(cardValue === "J") {
         handTotal += 10
-      } else {
-        
-      handTotal += parseInt(cardValue)
+      }else {
+        handTotal += parseInt(cardValue)
+      }
+      if(handTotal > 21 && cardValue === "A") {
+        handTotal -= 10
       }  
+      console.log(handTotal);
     })
-  return handTotal
-
+    return handTotal
+  }
   
-}
-
-
-
-
-
-
-
 
 
 
@@ -320,76 +334,74 @@ function betLess(evt) {
   render()
 }
 
-
-
-
-//render()
-
-
-
-//render
-
-
 //Add a stay function
 
 //Whenever you click stay, it changes the turn until there’s a winner
 
-function stay(evt) {
+function stay(card, idx) {
   turn = -1
-  let dealerSum = checkCardValue(computerHand)
-      console.log(dealerSum);
-      let playerSum = checkCardValue(playerHand)
-      console.log(playerSum);
-      // let player = turn === 1 ? 'Player' : 'Dealer'
-      // messageEl.textContent = `${winner === "T" ? "It's a tie!" : "Congrats! " + player + " won!"}`
-      getWinner()
+
+
+    while (dealerSum < 17) {
+      let cardHit = shuffleDeck.splice(0, 1)[0]  
+      dealerSum = checkCardValue(computerHand)
+      computerHand.push(cardHit)
+      console.log(computerHand);
+      if (dealerSum > 21) {
+        loser = true
+        messageEl.textContent = "Dealer Busted"
+        console.log(loser, "dealer loser");
+      }
     }
+    
+    render()
+    
+  }
+
+
     
     //add a winner function
     
     //if playerSum > 21 automatically return a lose and vicerversa 
   function getWinner() {
-    if(renderWin()) {
-      bet *= 2
-      credits += bet
+    if(winner) {
+      renderWin()
+    } else if(loser) {
+      renderLoss()
+    } else if(push) {
+      renderPush()
     }
-    else if(renderLoss()) {
-      bet -= bet
-    }
-    else {
-      renderPush() 
-      bet = bet
-    }
-  render()
+  
   }
 
     function renderWin() {
-      winner = null
       if(dealerSum > 21) {
-        return 
+        winner = true
+    
     } else if(playerSum > dealerSum) {
-      return 
+      winner = true
+    
     }
-    render()
+      bet *= 2
+      credits += bet
   }
 
     function renderLoss() {
-      loser = null
-      if(playerSum > 21) {
-    
-    } else if( playerSum < dealerSum) {
       
+      if(playerSum > 21) {
+        loser = true
+    } else if( playerSum < dealerSum) {
+      loser = true
     }
-    return loser
-    render()
+    bet -=bet
   }
 
     function renderPush() {
-      push = null
       if(playerSum === dealerSum) {
+        push = true
       }
-      return  push
-      render()
+      bet = bet
+      
     }
 
 
@@ -409,10 +421,13 @@ function stay(evt) {
     let cardValue = card.slice(1, 3)
     console.log(cardValue);
     if(cardValue === "A" && "J" || cardValue === "J" && "A" || cardValue === "A" && "K" || cardValue === "K" && "A" || cardValue === "A" && "Q" || cardValue === "Q" && "A" ){
-      winner = turn
+      return blackJackHand
+    }
+    if(playerHand === blackJackHand && computerHand !== blackJackHand) {
+      messageEl.textContent = "BlackJack! You win!"
     }
   })
-  return blackJackHand
+  
 }
   
   
