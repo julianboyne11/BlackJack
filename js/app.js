@@ -101,7 +101,7 @@ function init() {
   
   computerHand = []
   
-  totalCredits.textContent = `Total Credits: ${credits = 900}`
+  totalCredits.textContent = `Total Credits: ${credits = 1000}`
   
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
   
@@ -171,13 +171,13 @@ function newHand(card) {
   })   
   console.log(playerHand, "player");
   
+
   let giveComputerCard = shuffleDeck.splice(0, 2)
   giveComputerCard.forEach(card => {
     computerHand.push(card)
     console.log(giveComputerCard);
-  })
   console.log(computerHand, "computer");
-
+  })
 
   
   ////add two cards into the computerHand
@@ -213,15 +213,20 @@ function render() {
   computerHand.forEach(card => {
     let newCard = document.createElement("div")
     newCard.classList.add("card", "large", card)
-    computerCard.appendChild(newCard)
+    computerCard.appendChild(newCard) 
   })
+
+
+
+  
+  
   
   
 
 
   playerTotal.textContent = `${checkCardValue(playerHand)}`
 
-  dealerTotal.textContent = `${checkCardValue(computerHand)}`
+  
 
   if(winner) {
     renderMess()
@@ -293,7 +298,7 @@ function shuffle(array) {
         loser = true
         
         hitBtn.setAttribute("hidden", "")
-        reInit()
+        
       }
     
       render()
@@ -302,13 +307,14 @@ function shuffle(array) {
   
 
   
-  function checkCardValue(cards) {
+  function checkCardValue(cards) { 
     let aceCount = 0
     let handTotal = 0
     cards.forEach(card => {
       let cardValue = card.slice(1, 3)
   
       if(cardValue === "A") {
+      
         handTotal += 11
         aceCount += 1
       }  
@@ -325,11 +331,17 @@ function shuffle(array) {
       console.log(handTotal);
       console.log(aceCount, "aces");
   
-
+      
+      
       while(aceCount >= 1 && handTotal > 21){
         aceCount -= 1
         handTotal -= 10
       }
+    
+    
+
+    
+    
     
     })
     
@@ -337,7 +349,7 @@ function shuffle(array) {
     return handTotal
   }
   
-  
+
 
 
 
@@ -371,12 +383,21 @@ function enterBet(evt) {
   betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
   newHand()
-  // let playerBlackJack = getBlackJackWinner(playerHand)
-  // console.log(playerBlackJack, "player black");
-  // let dealerBlackJack = getBlackJackWinner(computerHand)
-  // console.log(dealerBlackJack, "dealer black");
+  credits -=bet
   messageEl.textContent = "Hit or Stay?"
-
+  dealerSum = checkCardValue(computerHand)
+  playerSum = checkCardValue(playerHand)
+  
+  if(playerSum === 21 && dealerSum !== 21) {
+    winner = true
+    messageEl.textContent = "Blackjack!!"
+  } if(playerSum !== 21 && dealerSum === 21) {
+    loser = true
+    messageEl.textContent = "Dealer Blackjack!!"
+  } if(playerSum === 21 & dealerSum === 21) {
+    push = true
+  }
+  
   render()
   
 } 
@@ -411,6 +432,8 @@ function stay(evt) {
 
   playerSum = checkCardValue(playerHand)
   console.log(playerSum);
+  
+  dealerTotal.textContent = `${checkCardValue(computerHand)}`
   
   dealer()
   
@@ -447,6 +470,9 @@ function stay(evt) {
   
 
     function renderWin() {
+      // if (playerHand === blackJackHand && computerHand !== blackJackHand) {
+      //   winner = true
+      // }
       if (dealerSum > 21) {
         winner = true
       
@@ -456,27 +482,32 @@ function stay(evt) {
       winner = true
     
     }
-      bet *= 2
-      credits += bet
-      reInit()
+      credits += bet * 2 
+      
   }
 
     function renderLoss() {
+      // if (computerHand === blackJackHand && playerHand !== blackJackHand) {
+      //   loser = true
+      // }
     if(dealerSum <= 21 ) {
       if(dealerSum > playerSum ) {
       loser = true
       }
     }
-    bet -=bet
-    reInit()
+    credits -= bet
+    
   }
 
     function renderPush() {
+      // if(computerHand === blackJackHand && playerHand === blackJackHand) {
+      //   push = true
+      // }
       if(playerSum === dealerSum) {
         push = true
       }
-      bet = bet 
-      reInit() 
+      credits = bet
+      
     }
 
 
@@ -508,7 +539,7 @@ function stay(evt) {
 
 //if player > than computer, player win
 function cashOut(evt) {
-  init()
+  reInit()
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   
