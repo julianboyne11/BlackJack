@@ -249,10 +249,10 @@ function shuffle(array) {
     
       playerSum = checkCardValue(playerHand)
       console.log(playerSum);
-    
+      
       if(playerSum > 21) {
         loser = true
-      
+        
         hitBtn.setAttribute("hidden", "")
       }
     
@@ -286,12 +286,13 @@ function shuffle(array) {
       console.log(aceCount, "aces");
   
 
+      while(aceCount >= 1 && handTotal > 21){
+        aceCount -= 1
+        handTotal -= 10
+      }
+    
     })
     
-    while(aceCount >= 1 && playerSum > 21){
-      aceCount -= 1
-      handTotal -= 10
-    }
   
     return handTotal
   }
@@ -330,10 +331,10 @@ function enterBet(evt) {
   betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
   newHand()
-  let playerBlackJack = getBlackJackWinner(playerHand)
-  console.log(playerBlackJack, "player black");
-  let dealerBlackJack = getBlackJackWinner(computerHand)
-  console.log(dealerBlackJack, "dealer black");
+  // let playerBlackJack = getBlackJackWinner(playerHand)
+  // console.log(playerBlackJack, "player black");
+  // let dealerBlackJack = getBlackJackWinner(computerHand)
+  // console.log(dealerBlackJack, "dealer black");
   messageEl.textContent = "Hit or Stay?"
   // dealerAceCount = aceCount(computerHand)
   // console.log(dealerAceCount, "dealer aces");
@@ -449,23 +450,7 @@ function stay(evt) {
     
     
   
-  function getBlackJackWinner(cards) {
-  let blackJackHand = null
-  cards.forEach(card => {
-    let cardValue = card.slice(1, 3)
-    console.log(cardValue);
-    if(cardValue === "A" && cardValue === "J" || cardValue === "J" && cardValue === "A" || cardValue === "A" && cardValue === "K" || cardValue === "K" && cardValue === "A" || cardValue === "A" && cardValue === "Q" || cardValue === "Q" && cardValue === "A" ){
-      blackJackHand = true
-    }
-    if (playerHand === blackJackHand && computerHand !== blackJackHand) {
-      winner = true
-    } if (computerHand === blackJackHand && playerrHand !== blackJackHand) {
-      loser = true
-    } if(computerHand === blackJackHand && playerrHand === blackJackHand) {
-      push = true
-    }
-  })
-}
+
 
 
 
