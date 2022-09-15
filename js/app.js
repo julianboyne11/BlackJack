@@ -116,7 +116,46 @@ function init() {
 
   push = null
 
-  messageEl.textContent = ""
+  messageEl.textContent = "Place Your bet!"
+  
+  render()
+  
+}
+
+function reInit() {
+  shuffleDeck = shuffle(deck)
+
+  
+  playerHand = []
+  
+  turn = 1
+  
+  computerHand = []
+  
+  totalCredits.textContent = `Total Credits: ${credits}`
+  
+  placeBet.textContent = `Place your Bet!: ${bet = 100}`
+  
+  
+  playSection.setAttribute("hidden", "")
+
+  betSection.removeAttribute("hidden")
+  
+  winner = null
+
+  loser = null
+
+  push = null
+
+  messageEl.textContent = "Place Your bet!"
+
+  hitBtn.removeAttribute("hidden")
+
+  increaseBtn.removeAttribute("hidden")
+
+  decreaseBtn.removeAttribute("hidden")
+
+  betBtn.removeAttribute("hidden")
   
   render()
   
@@ -254,6 +293,7 @@ function shuffle(array) {
         loser = true
         
         hitBtn.setAttribute("hidden", "")
+        reInit()
       }
     
       render()
@@ -299,7 +339,7 @@ function shuffle(array) {
   
   
 
-//if the hand already has a card of value and on the next cardHit it passes 21, then "A" should be 1
+
 
 
 
@@ -336,10 +376,7 @@ function enterBet(evt) {
   // let dealerBlackJack = getBlackJackWinner(computerHand)
   // console.log(dealerBlackJack, "dealer black");
   messageEl.textContent = "Hit or Stay?"
-  // dealerAceCount = aceCount(computerHand)
-  // console.log(dealerAceCount, "dealer aces");
-  // playerAceCount = aceCount(playerHand)
-  // console.log(playerAceCount, "player aces");
+
   render()
   
 } 
@@ -421,6 +458,7 @@ function stay(evt) {
     }
       bet *= 2
       credits += bet
+      reInit()
   }
 
     function renderLoss() {
@@ -430,13 +468,15 @@ function stay(evt) {
       }
     }
     bet -=bet
+    reInit()
   }
 
     function renderPush() {
       if(playerSum === dealerSum) {
         push = true
       }
-      bet = bet  
+      bet = bet 
+      reInit() 
     }
 
 
