@@ -24,6 +24,8 @@ Icebox
 
 4- Add flip Card to the dealer
 
+5- Add more Styling
+
 --------------------
 
 Lenguages
