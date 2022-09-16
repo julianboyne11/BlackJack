@@ -15,7 +15,7 @@ https://julian-boyne-blackjack.netlify.app
 
 
 
-Future Features
+Icebox
 -----------------------
 ----------------------
 1 - Add a Split button that alows you to, when you have two equal cards in your initial hand you can split it in two and play with two diferent hands.
