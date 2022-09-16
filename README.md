@@ -20,11 +20,11 @@ Icebox
 
 2 - Add credits images and give them some animation to when you want to bet.
 
-3- Add audio play
+3- Add audio play for the Cards.
 
-4- Add flip Card to the dealer
+4- Add flip Card to the dealer.
 
-5- Add more Styling
+5- Add more Styling.
 
 --------------------
 
