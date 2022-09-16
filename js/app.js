@@ -1,16 +1,15 @@
 /*------------------- Constants --------------------*/
-/*------------------- Constants --------------------*/
 
 const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 /*---------------- Variables (state) --------------*/
-let turn, credits, winner, bet, shuffleDeck,loser, push, dealerSum, playerSum, dealerAceCount, playerAceCount
+
+let turn, credits, winner, bet, shuffleDeck,loser, push, dealerSum, playerSum, Blackjack
 let playerHand= []
 let computerHand = []
 
-
-
 /*---------- Cached Element References -------------*/
+
 const cardContainer = document.querySelector(".container")
 const dealerTotal = document.querySelector("#computer-sum")
 const playerTotal = document.querySelector("#player-sum")
@@ -29,8 +28,6 @@ const decreaseBtn = document.querySelector("#decrease-bet")
 const hitBtn = document.querySelector("#hit-button")
 const stayBtn = document.querySelector("#stay-button")
 const messageEl = document.querySelector("#message")
-
-
 
 /*---------------- Event Listeners------------------*/
 
@@ -118,6 +115,8 @@ function reInit() {
 
   push = null
 
+  Blackjack = null
+
   messageEl.textContent = "Place Your bet!"
 
   hitBtn.removeAttribute("hidden")
@@ -187,6 +186,8 @@ function render() {
     renderMess()
   } else if(loser) {
     renderMess()
+  } else if(Blackjack){
+    renderMess()
   } else{
     renderMess()
   }
@@ -201,15 +202,10 @@ function render() {
 function renderMess() {
   if(winner) {
     messageEl.textContent = "You win the Hand!"
-  }
-  if(playerSum === 21 && dealerSum !== 21) {
-    
+  } if(Blackjack) {
     messageEl.textContent = "Blackjack!!"
-  } if(playerSum !== 21 && dealerSum === 21) {
-    
-    messageEl.textContent = "Dealer Blackjack!!"
-
-  }if(loser) {
+  }
+  if(loser) {
     messageEl.textContent = "You lose the Hand!"
   }
   if(push) {
@@ -255,6 +251,7 @@ function shuffle(array) {
         loser = true
         
         hitBtn.setAttribute("hidden", "")
+        stayBtn.setAttribute("hidden", "")
         
       }
       render()
@@ -307,7 +304,15 @@ function enterBet(evt) {
   dealerSum = checkCardValue(computerHand)
   playerSum = checkCardValue(playerHand)
   
-
+  if(playerSum === 21 && dealerSum !== 21) {
+    Blackjack = true
+    messageEl.textContent = "Blackjack!!"
+  } if(playerSum !== 21 && dealerSum === 21) {
+    loser = true
+    messageEl.textContent = "Dealer Blackjack!!"
+  } if(playerSum === 21 & dealerSum === 21) {
+    push = true
+  }
   
   render()
   
@@ -343,16 +348,10 @@ function stay(evt) {
 
   dealerTotal.removeAttribute("hidden")
 
-  if(playerSum === 21 && dealerSum !== 21) {
-    winner = true
-    messageEl.textContent = "Blackjack!!"
-  } if(playerSum !== 21 && dealerSum === 21) {
-    loser = true
-    messageEl.textContent = "Dealer Blackjack!!"
-  } if(playerSum === 21 & dealerSum === 21) {
-    push = true
-  }
-  
+  hitBtn.setAttribute("hidden", "")
+
+  stayBtn.setAttribute("hidden", "")
+
   dealer()
   
   renderWin()
@@ -361,7 +360,9 @@ function stay(evt) {
   
   renderPush() 
   
-    render()
+  render()
+
+  
 }  
   
   function dealer() {
@@ -383,7 +384,7 @@ function stay(evt) {
   
 
     function renderWin() {
-      
+  
       if (dealerSum > 21) {
         winner = true
       
@@ -418,11 +419,13 @@ function nextHand(evt) {
   reInit()
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
+  stayBtn.removeAttribute("hidden")
 }
 
 function cashOut(evt) {
   init()
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
+  stayBtn.removeAttribute("hidden")
   
 }
