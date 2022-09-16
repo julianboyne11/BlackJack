@@ -32,7 +32,7 @@ let computerHand = []
 const cardContainer = document.querySelector(".container")
 const dealerTotal = document.querySelector("#computer-sum")
 const playerTotal = document.querySelector("#player-sum")
-
+const nextHandBtn = document.querySelector("#next-hand")
 const totalCredits = document.querySelector("#total-credit")
 const playSection = document.querySelector(".play-section")
 const betSection = document.querySelector(".bets")
@@ -63,6 +63,8 @@ increaseBtn.addEventListener("click", betMore)
 decreaseBtn.addEventListener("click", betLess)
 
 stayBtn.addEventListener("click", stay)
+
+nextHandBtn.addEventListener("click", nextHand)
 
 /*------------------ Functions ---------------------*/
 
@@ -104,6 +106,8 @@ function init() {
   totalCredits.textContent = `Total Credits: ${credits = 1000}`
   
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
+
+  dealerTotal.setAttribute("hidden", "")
   
   
   playSection.setAttribute("hidden", "")
@@ -136,6 +140,7 @@ function reInit() {
   
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
   
+  dealerTotal.setAttribute("hidden", "")
   
   playSection.setAttribute("hidden", "")
 
@@ -213,16 +218,18 @@ function render() {
   computerHand.forEach(card => {
     let newCard = document.createElement("div")
     newCard.classList.add("card", "large", card)
-    computerCard.appendChild(newCard) 
+    computerCard.appendChild(newCard)
+    
   })
 
-
-
-  
-  
-  
   
 
+  
+  
+  
+  
+  dealerTotal.textContent = `${checkCardValue(computerHand)}`
+  
 
   playerTotal.textContent = `${checkCardValue(playerHand)}`
 
@@ -388,15 +395,7 @@ function enterBet(evt) {
   dealerSum = checkCardValue(computerHand)
   playerSum = checkCardValue(playerHand)
   
-  if(playerSum === 21 && dealerSum !== 21) {
-    winner = true
-    messageEl.textContent = "Blackjack!!"
-  } if(playerSum !== 21 && dealerSum === 21) {
-    loser = true
-    messageEl.textContent = "Dealer Blackjack!!"
-  } if(playerSum === 21 & dealerSum === 21) {
-    push = true
-  }
+
   
   render()
   
@@ -427,13 +426,25 @@ function betLess(evt) {
 
 function stay(evt) {
   
+  
   dealerSum = checkCardValue(computerHand)
   console.log(dealerSum);
 
   playerSum = checkCardValue(playerHand)
   console.log(playerSum);
-  
-  dealerTotal.textContent = `${checkCardValue(computerHand)}`
+
+
+  dealerTotal.removeAttribute("hidden")
+
+  if(playerSum === 21 && dealerSum !== 21) {
+    winner = true
+    messageEl.textContent = "Blackjack!!"
+  } if(playerSum !== 21 && dealerSum === 21) {
+    loser = true
+    messageEl.textContent = "Dealer Blackjack!!"
+  } if(playerSum === 21 & dealerSum === 21) {
+    push = true
+  }
   
   dealer()
   
@@ -538,8 +549,14 @@ function stay(evt) {
 //if the player has === blackjack && computer !== blackjack, return player winner
 
 //if player > than computer, player win
-function cashOut(evt) {
+function nextHand(evt) {
   reInit()
+  betBtn.removeAttribute("hidden")
+  hitBtn.removeAttribute("hidden")
+}
+
+function cashOut(evt) {
+  init()
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   
