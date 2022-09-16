@@ -29,6 +29,6 @@ Icebox
 
 Credits
 ---
-[Animation]https://animate.style/
+[Animation](https://animate.style/)
 
 
