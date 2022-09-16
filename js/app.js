@@ -18,7 +18,6 @@ const totalCredits = document.querySelector("#total-credit")
 const playSection = document.querySelector(".play-section")
 const betSection = document.querySelector(".bets")
 const playerCard = document.querySelector("#player-card")
-const deckEl = document.querySelector("#deck")
 const computerCard = document.querySelector("#computer-section")
 const placeBet = document.querySelector("#place-bet")
 const cashBtn = document.querySelector("#cash-out-button")
@@ -134,19 +133,15 @@ function reInit() {
 
 
 function newHand(card) {
+  
   let givePlayerCard = shuffleDeck.splice(0, 2)
   givePlayerCard.forEach(card => {
-    playerHand.push(card)
-    console.log(givePlayerCard);
-    
-  })   
-  console.log(playerHand, "player");
-  
+    playerHand.push(card) 
+  }) 
+
   let giveComputerCard = shuffleDeck.splice(0, 2)
   giveComputerCard.forEach(card => {
     computerHand.push(card)
-    console.log(giveComputerCard);
-  console.log(computerHand, "computer");
   })
   render()
 }
@@ -187,7 +182,6 @@ function render() {
   } else{
     renderMess()
   }
-  
 }
 
 
@@ -233,17 +227,13 @@ function shuffle(array) {
   function renderHit(card, idx) {
     if(deck.length > 0) {
       
-      
       let cardHit = shuffleDeck.splice(0, 1)[0]  
       
       playerHand.push(cardHit)
-      console.log(playerHand)
 
       dealerSum = checkCardValue(computerHand)
-      console.log(dealerSum);
-    
+      
       playerSum = checkCardValue(playerHand)
-      console.log(playerSum);
       
       if(playerSum > 21) {
         loser = true
@@ -308,9 +298,7 @@ function enterBet(evt) {
     stayBtn.setAttribute("hidden", "")
     hitBtn.setAttribute("hidden", "")
   }
-  
-  render()
-  
+  render() 
 } 
 
 //That every time you want to bet more it reduce your total amount of credits
@@ -361,19 +349,11 @@ function stay(evt) {
   function dealer() {
     while (dealerSum < 17) {
       let cardHit = shuffleDeck.splice(0, 1)[0]  
-      console.log("card hit",cardHit);
       computerHand.push(cardHit)
       dealerSum = checkCardValue(computerHand)
-      console.log("dealer total", dealerSum);
-      console.log("dealer hand at end", computerHand);
     }  
   }
 
-
-    
-    
-    
-  
 
   function renderWin() {
     if (dealerSum > 21) {
