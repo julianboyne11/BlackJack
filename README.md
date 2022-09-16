@@ -7,7 +7,11 @@ Link to the game:
 https://julian-boyne-blackjack.netlify.app
 
 -------
-[!.]
+![front game image.png](images/assets/screenshot/front%20game.png)
+
+![next game image.png](images/assets/screenshot/next%20game%20image.png)
+
+-------
 
 
 
