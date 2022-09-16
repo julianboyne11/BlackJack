@@ -26,4 +26,8 @@ Future Features
 
 --------------------
 
+Credits
+---
+link: https://animate.style/
+
 
