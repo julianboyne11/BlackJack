@@ -2,9 +2,7 @@ BLACKJACK
 =======================
 Game goal is to beat dealer by being closer to 21 than them. if you pass 21, "YOU LOSE".
 
-Link to the game: 
---------
-https://julian-boyne-blackjack.netlify.app
+Link to the **[Blackjack](https://julian-boyne-blackjack.netlify.app) game
 
 -------
 ![front game image.png](images/assets/screenshot/front%20game.png)
