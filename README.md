@@ -26,7 +26,16 @@ Icebox
 
 --------------------
 
+Lenguages
+---
+-HTML
 
+-CSS
+
+-Javascript
+
+
+---
 Credits
 ---
 [Animation](https://animate.style/)
