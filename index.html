@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
   <link rel="stylesheet" href="./css/cardstarter.css">
   <link rel="stylesheet" href="./css/cardstarter.min.css">
   <link rel="stylesheet" href="./css/style.css">
@@ -30,12 +34,12 @@
     <section class="play-section" >
       <div id="deck" class="card large back-blue shadow"></div>
       <h2>Dealer: <span id="computer-sum"></span></h2>
-      <div id="computer-section"></div>
+      <div id="computer-section" class="animate__animated animate__fadeInDownBig"></div>
       <h2>Player: <span id="player-sum"></span></h2>
-      <div id="player-card"></div>
+      <div id="player-card" class="animate__animated animate__fadeInDownBig"></div>
       <div class="play-button">
-        <button id="hit-button">HIT</button>
-        <button id="stay-button">STAY</button>
+        <button id="hit-button" class="animate__animated animate__fadeInRight">HIT</button>
+        <button id="stay-button" class="animate__animated animate__fadeInRight">STAY</button>
       </div>
     </section>
   </main>
