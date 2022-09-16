@@ -36,7 +36,6 @@ Lenguages used
 
 -Javascript
 
--git
 
 ---
 Credits
