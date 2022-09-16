@@ -4,7 +4,7 @@ const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
 
 /*---------------- Variables (state) --------------*/
 
-let turn, credits, winner, bet, shuffleDeck,loser, push, dealerSum, playerSum, Blackjack
+let turn, credits, winner, bet, shuffleDeck, loser, push, dealerSum, playerSum, Blackjack
 let playerHand= []
 let computerHand = []
 
@@ -172,16 +172,11 @@ function render() {
     let newCard = document.createElement("div")
     newCard.classList.add("card", "large", card)
     computerCard.appendChild(newCard)
-    
   })
 
-  
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
   
-
   playerTotal.textContent = `${checkCardValue(playerHand)}`
-
-  
 
   if(winner) {
     renderMess()
@@ -192,14 +187,10 @@ function render() {
   } else{
     renderMess()
   }
-
-  console.log(winner, "Winner");
-
-  console.log(loser, "loser");
-
-  console.log(push, "push");
   
 }
+
+
 function renderMess() {
   let winBet = bet * 2
   let winBlackjack = bet * 3 
@@ -256,10 +247,8 @@ function shuffle(array) {
       
       if(playerSum > 21) {
         loser = true
-        
         hitBtn.setAttribute("hidden", "")
         stayBtn.setAttribute("hidden", "")
-        
       }
       render()
     }
@@ -287,9 +276,6 @@ function shuffle(array) {
       else {
         handTotal += parseInt(cardValue)
       }
-      console.log(handTotal);
-      console.log(aceCount, "aces");
-  
       while(aceCount >= 1 && handTotal > 21){
         aceCount -= 1
         handTotal -= 10
@@ -315,7 +301,6 @@ function enterBet(evt) {
     hitBtn.setAttribute("hidden", "")
   } if(playerSum !== 21 && dealerSum === 21) {
     Blackjack = true
-    
     stayBtn.setAttribute("hidden", "")
     hitBtn.setAttribute("hidden", "")
   } if(playerSum === 21 & dealerSum === 21) {
@@ -351,10 +336,8 @@ function betLess(evt) {
 
 function stay(evt) {
   dealerSum = checkCardValue(computerHand)
-  console.log(dealerSum);
 
   playerSum = checkCardValue(playerHand)
-  console.log(playerSum);
 
   dealerTotal.removeAttribute("hidden")
 
@@ -376,7 +359,6 @@ function stay(evt) {
 }  
   
   function dealer() {
-    console.log("dealer hand at beggining", computerHand );
     while (dealerSum < 17) {
       let cardHit = shuffleDeck.splice(0, 1)[0]  
       console.log("card hit",cardHit);
@@ -393,34 +375,28 @@ function stay(evt) {
     
   
 
-    function renderWin() {
-      if (dealerSum > 21) {
-        winner = true
-      
-      }
-    
-      if(playerSum > dealerSum) {
-        winner = true
-    
+  function renderWin() {
+    if (dealerSum > 21) {
+      winner = true
     }
-      
+    if(playerSum > dealerSum) {
+      winner = true
+    } 
   }
 
-    function renderLoss() {
+  function renderLoss() {
     if(dealerSum <= 21 ) {
       if(dealerSum > playerSum ) {
       loser = true
       }
-    }
-    
+    } 
   }
 
-    function renderPush() {
-      if(playerSum === dealerSum) {
-        push = true
-      }
-      
+  function renderPush() {
+    if(playerSum === dealerSum) {
+      push = true
     }
+  }
 
 
 function nextHand(evt) {
