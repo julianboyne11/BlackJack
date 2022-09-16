@@ -71,32 +71,11 @@ nextHandBtn.addEventListener("click", nextHand)
 init()
 
 
-////Add some state variables called:
 
-//1- Winner to determine the winner of the hand
-
-//2- Turn to check who’s turn is it
-
-//3- Deck to represent the cards
-
-//4-Credits to represent the amount of credits you have
-
-//5-Hand1 to represent the player’s hand
-
-// 6-Hand2 to represent the computer’s hand
-
-
-
-////Store catch elements references
-
-
-
-////Create a function called “init” to initialize the game
 function init() {  
   
   shuffleDeck = shuffle(deck)
 
-  
   playerHand = []
   
   turn = 1
@@ -108,7 +87,6 @@ function init() {
   placeBet.textContent = `Place your Bet!: ${bet = 100}`
 
   dealerTotal.setAttribute("hidden", "")
-  
   
   playSection.setAttribute("hidden", "")
 
@@ -127,9 +105,9 @@ function init() {
 }
 
 function reInit() {
+
   shuffleDeck = shuffle(deck)
 
-  
   playerHand = []
   
   turn = 1
@@ -176,29 +154,16 @@ function newHand(card) {
   })   
   console.log(playerHand, "player");
   
-
   let giveComputerCard = shuffleDeck.splice(0, 2)
   giveComputerCard.forEach(card => {
     computerHand.push(card)
     console.log(giveComputerCard);
   console.log(computerHand, "computer");
   })
-
-  
-  ////add two cards into the computerHand
-  ////add two cards into the playerHand
   render()
 }
 
-////It show your available credits
 
-/////The bet that you want to make
-
-////It show a cash out to leave the table
-
-////call a function called “render” to render the game
-
-////Create a render function
 function render() {
   
   playerCard.innerHTML= ""
@@ -222,11 +187,6 @@ function render() {
     
   })
 
-  
-
-  
-  
-  
   
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
   
@@ -263,8 +223,6 @@ function renderMess() {
 
 }
 
-
-
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
@@ -279,13 +237,10 @@ function shuffle(array) {
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
     }
-    
     return array;
   }
   
-  ////Add a hit function 
-  
-  ////Whenever you click hit, it push a card to your hand
+
   function renderHit(card, idx) {
     if(deck.length > 0) {
       
@@ -307,11 +262,9 @@ function shuffle(array) {
         hitBtn.setAttribute("hidden", "")
         
       }
-    
       render()
     }
   }
-  
 
   
   function checkCardValue(cards) { 
@@ -338,50 +291,14 @@ function shuffle(array) {
       console.log(handTotal);
       console.log(aceCount, "aces");
   
-      
-      
       while(aceCount >= 1 && handTotal > 21){
         aceCount -= 1
         handTotal -= 10
       }
-    
-    
-
-    
-    
-    
-    })
-    
-  
+    }) 
     return handTotal
   }
   
-
-
-
-
-
-
-
-
-////-hides the betting function once you place a bet and reduce your total credits
-
-//// -renders a card shuffling function
-
-////renders if you “hit” card and add card to your hand
-
-//render if you “stay” and should give the turn to the computer
-
-////render the total amount of your card value
-
-//render winner
-
-//
-
-////Create an Object called “cards” and add the different card and their respective values 
-
-//
-//Create a Betting function
 
 function enterBet(evt) {
   placeBet.textContent = `Total Bet: ${bet}`
@@ -420,19 +337,15 @@ function betLess(evt) {
   render()
 }
 
-//Add a stay function
 
-//Whenever you click stay, it changes the turn until there’s a winner
 
 function stay(evt) {
-  
   
   dealerSum = checkCardValue(computerHand)
   console.log(dealerSum);
 
   playerSum = checkCardValue(playerHand)
   console.log(playerSum);
-
 
   dealerTotal.removeAttribute("hidden")
 
@@ -448,15 +361,12 @@ function stay(evt) {
   
   dealer()
   
-
   renderWin()
 
   renderLoss()
   
   renderPush() 
   
-
-    
     render()
 }  
   
@@ -469,21 +379,17 @@ function stay(evt) {
       dealerSum = checkCardValue(computerHand)
       console.log("dealer total", dealerSum);
       console.log("dealer hand at end", computerHand);
-    }
-  
-    
+    }  
   }
 
 
     
-    //add a winner function
+    
     
   
 
     function renderWin() {
-      // if (playerHand === blackJackHand && computerHand !== blackJackHand) {
-      //   winner = true
-      // }
+      
       if (dealerSum > 21) {
         winner = true
       
@@ -498,57 +404,22 @@ function stay(evt) {
   }
 
     function renderLoss() {
-      // if (computerHand === blackJackHand && playerHand !== blackJackHand) {
-      //   loser = true
-      // }
     if(dealerSum <= 21 ) {
       if(dealerSum > playerSum ) {
       loser = true
       }
     }
     credits -= bet
-    
   }
 
     function renderPush() {
-      // if(computerHand === blackJackHand && playerHand === blackJackHand) {
-      //   push = true
-      // }
       if(playerSum === dealerSum) {
         push = true
       }
-      credits = bet
-      
+      credits = bet 
     }
 
 
-    //we want to check every posible blackJack and if there's a blackJack on one of the hand return winner
-    
-    //if playerSum > than dealerSum, winner = player
-    //if playerSum < than dealerSum, winner = dealer
-    //if both hands have blackJack, return "T"
-    
-    
-    
-    
-  
-
-
-
-
-
-
-////create a BlackJack combo
-
-//check the total amount of each hand 
-
-////if the player has more than 21, automatically return because you loose
-
-//if computer > than player, return player loose
-
-//if the player has === blackjack && computer !== blackjack, return player winner
-
-//if player > than computer, player win
 function nextHand(evt) {
   reInit()
   betBtn.removeAttribute("hidden")
