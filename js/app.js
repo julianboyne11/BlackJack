@@ -68,8 +68,8 @@ nextHandBtn.addEventListener("click", nextHand)
 
 /*------------------ Functions ---------------------*/
 
-init()
 
+init()
 
 
 function init() {  
@@ -91,6 +91,12 @@ function init() {
   playSection.setAttribute("hidden", "")
 
   betSection.removeAttribute("hidden")
+
+  increaseBtn.removeAttribute("hidden")
+
+  decreaseBtn.removeAttribute("hidden")
+
+  betBtn.removeAttribute("hidden")
   
   winner = null
 
