@@ -28,7 +28,7 @@ Icebox
 
 --------------------
 
-Lenguages
+Lenguages used
 ---
 -HTML
 
@@ -36,6 +36,7 @@ Lenguages
 
 -Javascript
 
+-git
 
 ---
 Credits
