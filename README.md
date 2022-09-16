@@ -24,6 +24,8 @@ Icebox
 
 3- Add audio play
 
+4- Add flip Card to the dealer
+
 --------------------
 
 Credits
