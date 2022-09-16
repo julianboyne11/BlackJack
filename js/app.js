@@ -29,6 +29,7 @@ const hitBtn = document.querySelector("#hit-button")
 const stayBtn = document.querySelector("#stay-button")
 const messageEl = document.querySelector("#message")
 
+
 /*---------------- Event Listeners------------------*/
 
 cashBtn.addEventListener("click", cashOut)
@@ -200,16 +201,22 @@ function render() {
   
 }
 function renderMess() {
+  let winBet = bet * 2
+  let winBlackjack = bet * 3 
   if(winner) {
     messageEl.textContent = "You win the Hand!"
+    credits += winBet
   } if(Blackjack) {
     messageEl.textContent = "Blackjack!!"
+    credits += winBlackjack
   }
   if(loser) {
     messageEl.textContent = "You lose the Hand!"
+    credits -= bet
   }
   if(push) {
     messageEl.textContent = "Push!"
+    bet = bet
   }
 
 }
@@ -293,25 +300,28 @@ function shuffle(array) {
   
 
 function enterBet(evt) {
-  placeBet.textContent = `Total Bet: ${bet}`
   increaseBtn.setAttribute("hidden", "")
   decreaseBtn.setAttribute("hidden", "")
   betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
   newHand()
-  credits -=bet
   messageEl.textContent = "Hit or Stay?"
   dealerSum = checkCardValue(computerHand)
   playerSum = checkCardValue(playerHand)
-  
+  credits -= bet
   if(playerSum === 21 && dealerSum !== 21) {
     Blackjack = true
-    messageEl.textContent = "Blackjack!!"
+    stayBtn.setAttribute("hidden", "")
+    hitBtn.setAttribute("hidden", "")
   } if(playerSum !== 21 && dealerSum === 21) {
-    loser = true
-    messageEl.textContent = "Dealer Blackjack!!"
+    Blackjack = true
+    
+    stayBtn.setAttribute("hidden", "")
+    hitBtn.setAttribute("hidden", "")
   } if(playerSum === 21 & dealerSum === 21) {
     push = true
+    stayBtn.setAttribute("hidden", "")
+    hitBtn.setAttribute("hidden", "")
   }
   
   render()
@@ -384,17 +394,15 @@ function stay(evt) {
   
 
     function renderWin() {
-  
       if (dealerSum > 21) {
         winner = true
       
       }
     
       if(playerSum > dealerSum) {
-      winner = true
+        winner = true
     
     }
-      credits += bet * 2 
       
   }
 
@@ -404,14 +412,14 @@ function stay(evt) {
       loser = true
       }
     }
-    credits -= bet
+    
   }
 
     function renderPush() {
       if(playerSum === dealerSum) {
         push = true
       }
-      credits = bet 
+      
     }
 
 
