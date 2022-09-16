@@ -22,6 +22,8 @@ Future Features
 
 2 - Add credits images and give them some animation to when you want to bet.
 
+3- Add audio play
+
 --------------------
 
 
