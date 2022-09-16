@@ -7,10 +7,10 @@ https://julian-boyne-blackjack.netlify.app
 
 -----------------------
 
-![next game image.png]
+[![next game image.png]()]
 
 
 
-![next game image.png]
+[![next game image.png]()]
 
 -----------------------
