@@ -92,7 +92,7 @@ function init() {
 function reInit() {
 
   shuffleDeck = shuffle(deck)
-
+  console.log(shuffleDeck);
   playerHand = []
   
   turn = 1
@@ -127,10 +127,6 @@ function reInit() {
 
   betBtn.removeAttribute("hidden")
 
-  if (loser && credits === 0) {
-    init()
-  }
-  
   render()
   
 }
@@ -188,7 +184,9 @@ function render() {
     renderMess()
   } if(credits < 0) {
     renderMess()
-  } 
+  } if(shuffleDeck.length > 4) {
+    messageEl.textContent = "Out of cards please Leave"
+  }
 }
 
 
