@@ -304,8 +304,7 @@ function enterBet(evt) {
 //That every time you want to bet more it reduce your total amount of credits
 function betMore (evt) {
   if(bet < credits) {
-    bet += 5
-    credits -= 5
+    bet += 10
   }
   render()
 }
@@ -314,8 +313,7 @@ function betMore (evt) {
 //And when you want to bet less, it increases your total amount of credits
 function betLess(evt) {
   if(bet > 0) {
-    bet -= 5
-    credits += 5
+    bet -= 10
   }
   render()
 }
