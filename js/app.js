@@ -126,6 +126,10 @@ function reInit() {
   decreaseBtn.removeAttribute("hidden")
 
   betBtn.removeAttribute("hidden")
+
+  if (loser && credits === 0) {
+    init()
+  }
   
   render()
   
@@ -157,6 +161,7 @@ function render() {
   
   totalCredits.textContent = `Total Credits: ${credits}`
   
+  
   playerHand.forEach(card => {
     let newCard = document.createElement("div")
     newCard.classList.add("card", "large", card)
@@ -181,7 +186,9 @@ function render() {
     renderMess()
   } else{
     renderMess()
-  }
+  } if(credits < 0) {
+    renderMess()
+  } 
 }
 
 
@@ -197,13 +204,11 @@ function renderMess() {
   }
   if(loser) {
     messageEl.textContent = "You lose the Hand!"
-    credits -= bet
   }
   if(push) {
     messageEl.textContent = "Push!"
     bet = bet
-  }
-
+  } 
 }
 
 function shuffle(array) {
@@ -304,6 +309,8 @@ function enterBet(evt) {
 //That every time you want to bet more it reduce your total amount of credits
 function betMore (evt) {
   if(bet < credits) {
+    bet += 50
+  } if(credits <= 0) {
     bet += 10
   }
   render()
@@ -313,7 +320,7 @@ function betMore (evt) {
 //And when you want to bet less, it increases your total amount of credits
 function betLess(evt) {
   if(bet > 0) {
-    bet -= 10
+    bet -= 50
   }
   render()
 }
@@ -367,7 +374,7 @@ function stay(evt) {
       if(dealerSum > playerSum ) {
       loser = true
       }
-    } 
+    }
   }
 
   function renderPush() {
