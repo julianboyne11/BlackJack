@@ -4,7 +4,7 @@ const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
 
 /*---------------- Variables (state) --------------*/
 
-let turn, credits, winner, bet, shuffleDeck, loser, push, dealerSum, playerSum, Blackjack
+let turn, credits, winner, bet, shuffleDeck, loser, push, dealerSum, playerSum, blackjack
 let playerHand= []
 let computerHand = []
 
@@ -83,6 +83,8 @@ function init() {
 
   push = null
 
+  blackjack = null
+
   messageEl.textContent = "Place Your bet!"
   
   render()
@@ -115,7 +117,7 @@ function reInit() {
 
   push = null
 
-  Blackjack = null
+  blackjack = null
 
   messageEl.textContent = "Place Your bet!"
 
@@ -178,14 +180,12 @@ function render() {
     renderMess()
   } else if(loser) {
     renderMess()
-  } else if(Blackjack){
+  } else if(blackjack){
     renderMess()
   } else{
     renderMess()
   } if(credits < 0) {
     renderMess()
-  } if(shuffleDeck.length > 4) {
-    messageEl.textContent = "Out of cards please Leave"
   }
 }
 
@@ -196,7 +196,7 @@ function renderMess() {
   if(winner) {
     messageEl.textContent = "You win the Hand!"
     credits += winBet
-  } if(Blackjack) {
+  } if(blackjack) {
     messageEl.textContent = "Blackjack!!"
     credits += winBlackjack
   }
@@ -289,11 +289,11 @@ function enterBet(evt) {
   playerSum = checkCardValue(playerHand)
   credits -= bet
   if(playerSum === 21 && dealerSum !== 21) {
-    Blackjack = true
+    blackjack = true
     stayBtn.setAttribute("hidden", "")
     hitBtn.setAttribute("hidden", "")
   } if(playerSum !== 21 && dealerSum === 21) {
-    Blackjack = true
+    blackjack = true
     stayBtn.setAttribute("hidden", "")
     hitBtn.setAttribute("hidden", "")
   } if(playerSum === 21 & dealerSum === 21) {
