@@ -36,7 +36,7 @@ Languages used
 
 -CSS
 
--Javascript
+-JavaScript
 
 
 ---
