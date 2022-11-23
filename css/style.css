@@ -47,12 +47,17 @@ h1 {
 }
 
 .bets {
-  height: 60vh;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
   align-items: flex-end;
   justify-content: space-around;
 }
 
 .bets > #message {
+  
   display: flex;
   text-align: center;
   justify-content: center;
@@ -60,7 +65,7 @@ h1 {
 }
 
 #message {
-  min-width: 200px;
+  
   font-family: 'Shadows Into Light', cursive;
   color: rgb(53, 52, 52);
   font-size: 40px;
@@ -191,10 +196,11 @@ h1 {
 }
 
 #place-bet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Shadows Into Light', cursive;
   color: rgb(53, 52, 52);
-  position: absolute;
-  margin: 50px -10px;
   font-size: 21px;
 }
 
@@ -211,14 +217,13 @@ h1 {
   color: rgb(53, 52, 52);
   font-size: 40px;
   font-weight: bolder;
-  margin-bottom: 100px;
 }
 
 
 
 #total-credit, #place-bet {
   padding-left: 100px;
-  margin-bottom: -50px;
+
   
 }
 
@@ -251,6 +256,18 @@ h1 {
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+  .bets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .bet > #bet-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
   #message {
     display: flex;
