@@ -3,6 +3,15 @@
 
 }
 
+.html {
+  box-sizing: border-box;
+}
+
+html > body {
+  height: 100vh;
+  width: 100%;
+}
+
 body {
   background-color: bisque;
   box-shadow: inset 0 -3em 3em rgba(248, 189, 85, 0.1),
@@ -12,6 +21,15 @@ body {
   text-align: center;
 }
 
+.game-btn {
+  display: flex;
+  width: 100%;
+  
+}
+
+.game-btn > button {
+  margin: 10px;
+}
 
 #title {
   display: flex;
@@ -28,14 +46,25 @@ h1 {
   text-align: center;
 }
 
+.bets {
+  justify-content: space-around;
+}
+
+.bets > #message {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
 #message {
+  min-width: 200px;
   font-family: 'Shadows Into Light', cursive;
   color: rgb(53, 52, 52);
-  padding-left: 100px;
   font-size: 40px;
 }
 
-#cash-out-button {
+.game-btn > #cash-out-button {
   font-family: 'Shadows Into Light', cursive;
   color: rgb(53, 52, 52);
   font-weight: bold;
@@ -46,9 +75,9 @@ h1 {
   box-shadow: inset 0 -3em 3em rgba(42, 40, 40, 0.1),
   0 0  0 2px rgb(185, 186, 186),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  height: 55px;
-  width: 90px;
-  margin-bottom: 80px;
+  height: 50px;
+  min-width: 100px;
+
 }
 
 #next-hand {
@@ -62,9 +91,9 @@ h1 {
   box-shadow: inset 0 -3em 3em rgba(42, 40, 40, 0.1),
   0 0  0 2px rgb(185, 186, 186),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  height: 55px;
-  width: 90px;
-  margin-right: 700px;
+  height: 50px;
+  width: 100px;
+
   
 }
 
@@ -79,12 +108,23 @@ h1 {
 }
 
 .bets {
-  margin: 500px -80px;
   display: flex;
   text-align: left;
 }
 
+.bets > .bet-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bets > #bet-button {
+  justify-content: flex-end;
+  align-items: flex-end;
+  display: flex;
+}
+
 #bet-button {
+  
   border: 2px solid black;
   box-shadow: inset 0 -3em 3em rgba(42, 40, 40, 0.1),
   0 0  0 2px rgb(124, 122, 122),
@@ -94,7 +134,6 @@ h1 {
   font-weight: bolder;
   text-align: center;
   background-color: rgb(174, 174, 174);
-  margin: 0 1300px;
   height: 60px;
   width: 80px;
   border-radius: 20%;
@@ -182,7 +221,7 @@ h1 {
 }
 
 .play-section {
-  margin: -1050px;
+  height: 100%;
 }
 
 #hit-button, #stay-button {
@@ -202,6 +241,21 @@ h1 {
 #hit-button:hover, #stay-button:hover {
   background-color: #8d8d8d;
   color: black;
+}
+
+@media only screen and (max-width: 800px) {
+  body > main {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  #message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 

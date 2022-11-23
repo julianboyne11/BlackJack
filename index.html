@@ -18,19 +18,10 @@
 <body>
   <h1 id="title">Let's Play Blackjack</h1>
   <main>
-    <button id="cash-out-button">Cash-Out</button>
-    <button id="next-hand">Next Hand</button>
-    <section class="bets">
-      <div class="bet-container">
-        <button id="bet-button">BET</button>
-        <div id="total-credit">Total Credits:</div>
-        <h4 id="place-bet">Place your Bet!</h4>
-        <div class="increase-decrease-button">
-          <button id="decrease-bet">-</button>
-          <button id="increase-bet">+</button>
-          <h2 id="message">Message</h2>
-        </div> 
-      </section>
+    <div class="game-btn">
+      <button id="cash-out-button">Cash-Out</button>
+      <button id="next-hand">Next Hand</button>
+    </div>
     <section class="play-section" >
       <div id="deck" class="card large back-blue shadow"></div>
       <h2>Dealer: <span id="computer-sum"></span></h2>
@@ -42,6 +33,18 @@
         <button id="stay-button" class="animate__animated animate__fadeInRight">STAY</button>
       </div>
     </section>
+    <section class="bets">
+      <div class="bet-container">
+        <div id="total-credit">Total Credits:</div>
+        <h4 id="place-bet">Place your Bet!</h4>
+        <button id="bet-button">BET</button>
+        <div class="increase-decrease-button">
+          <button id="decrease-bet">-</button>
+          <button id="increase-bet">+</button>
+        </div> 
+        <h2 id="message">Message</h2>
+      </div>
+      </section>
   </main>
 </body>
 </html>
