@@ -154,7 +154,6 @@ h1 {
 .increase-decrease-button {
   position: absolute;
   margin: 45px 0;
-  padding-left: 550px;
   border-radius: 10%;
 }
 
@@ -258,10 +257,11 @@ h1 {
     flex-direction: column;
   }
   .bets {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  body > .bets {
+    width: 100%;
   }
   .bet > #bet-button {
     display: flex;
@@ -274,6 +274,15 @@ h1 {
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+  .increase-decrease-button {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 5px;
+    margin: 5px;
+  }
+  .increase-decrease-button > button {
+    margin: 7px
   }
 }
 
