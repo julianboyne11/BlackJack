@@ -7,6 +7,7 @@ const deck =  ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d0
 let turn, credits, winner, bet, shuffleDeck, loser, push, dealerSum, playerSum, blackjack
 let playerHand= []
 let computerHand = []
+let hiddenCard = document.createElement("div")
 
 /*---------- Cached Element References -------------*/
 
@@ -140,11 +141,11 @@ function newHand(card) {
   givePlayerCard.forEach(card => {
     playerHand.push(card) 
   }) 
-
-  let giveComputerCard = shuffleDeck.splice(0, 2)
+  let giveComputerCard = shuffleDeck.splice(0, 1)
   giveComputerCard.forEach(card => {
     computerHand.push(card)
   })
+
   render()
 }
 
@@ -166,11 +167,21 @@ function render() {
     playerCard.appendChild(newCard)
   })
   
-  computerHand.forEach(card => {
+  // let hiddenCard = computerHand[0]
+
+  for (let i = 0; i < computerHand.length; i++) {
     let newCard = document.createElement("div")
-    newCard.classList.add("card", "large", card)
+    hiddenCard.classList.add("card", "large", "back-blue", computerHand[i])
+    newCard.classList.add("card", "large", computerHand[i])
+    computerCard.appendChild(hiddenCard)
     computerCard.appendChild(newCard)
-  })
+
+  
+    console.log(computerHand, "Dealer");
+
+    
+  }
+  
 
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
   
@@ -331,6 +342,8 @@ function stay(evt) {
   playerSum = checkCardValue(playerHand)
 
   dealerTotal.removeAttribute("hidden")
+  
+  // hiddenCard.remove()
 
   hitBtn.setAttribute("hidden", "")
 
