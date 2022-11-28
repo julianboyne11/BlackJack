@@ -166,13 +166,11 @@ function render() {
     newCard.classList.add("card", "large", card)
     playerCard.appendChild(newCard)
   })
-  
-  // let hiddenCard = computerHand[0]
 
-  for (let i = 0; i < computerHand.length; i++) {
+  computerHand.forEach(card => {
     let newCard = document.createElement("div")
-    hiddenCard.classList.add("card", "large", "back-blue", computerHand[i])
-    newCard.classList.add("card", "large", computerHand[i])
+    hiddenCard.classList.add("card", "large", "back-blue", card)
+    newCard.classList.add("card", "large", card)
     computerCard.appendChild(hiddenCard)
     computerCard.appendChild(newCard)
 
@@ -180,7 +178,7 @@ function render() {
     console.log(computerHand, "Dealer");
 
     
-  }
+  })
   
 
   dealerTotal.textContent = `${checkCardValue(computerHand)}`
@@ -343,7 +341,7 @@ function stay(evt) {
 
   dealerTotal.removeAttribute("hidden")
   
-  // hiddenCard.remove()
+  hiddenCard.style.display = "none"
 
   hitBtn.setAttribute("hidden", "")
 
