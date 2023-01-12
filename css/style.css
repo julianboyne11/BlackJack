@@ -244,19 +244,36 @@ h1 {
   color: black;
 }
 
+@media only screen and (max-width: 1000px) {
+  .bet-container > button {
+    margin: 15px;
+  }
+}
+
 @media only screen and (max-width: 800px) {
+  body > main {
+    margin: 20px;
+  }
   body > main {
     overflow: hidden;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
   }
-  .bets {
+  body > .bet-container {
+    display: flex;
     justify-content: center;
     align-items: center;
   }
-  body > .bets {
-    width: 100%;
+  main > .bets {
+    margin-top: 100px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+  }
+  main > .bet-container {
+    width: 50%;
   }
   .bet > #bet-button {
     display: flex;
