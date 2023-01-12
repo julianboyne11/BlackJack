@@ -398,6 +398,7 @@ function nextHand(evt) {
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   stayBtn.removeAttribute("hidden")
+  hiddenCard.style.removeAttribute("display")
 }
 
 function cashOut(evt) {
@@ -405,5 +406,6 @@ function cashOut(evt) {
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   stayBtn.removeAttribute("hidden")
+  hiddenCard.style.removeAttribute("display")
   
 }
