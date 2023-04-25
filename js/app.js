@@ -130,6 +130,10 @@ function reInit() {
 
   betBtn.removeAttribute("hidden")
 
+  if(shuffleDeck.length <= 6) {
+    shuffleDeck = deck
+  }
+
   render()
   
 }
@@ -174,7 +178,7 @@ function render() {
     computerCard.appendChild(hiddenCard)
     computerCard.appendChild(newCard)
 
-  
+    console.log(hiddenCard, "Hidden")
     console.log(computerHand, "Dealer");
 
     
@@ -398,7 +402,7 @@ function nextHand(evt) {
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   stayBtn.removeAttribute("hidden")
-  hiddenCard.style.removeAttribute("display")
+  hiddenCard.style.removeProperty("display")
 }
 
 function cashOut(evt) {
@@ -406,6 +410,6 @@ function cashOut(evt) {
   betBtn.removeAttribute("hidden")
   hitBtn.removeAttribute("hidden")
   stayBtn.removeAttribute("hidden")
-  hiddenCard.style.removeAttribute("display")
+  hiddenCard.style.removeProperty("display")
   
 }
