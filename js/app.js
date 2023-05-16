@@ -195,6 +195,7 @@ function render() {
     renderMess()
   } else if(blackjack){
     renderMess()
+    stay()
   } else{
     renderMess()
   } if(credits < 0) {
