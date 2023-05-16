@@ -28,7 +28,8 @@ const decreaseBtn = document.querySelector("#decrease-bet")
 const hitBtn = document.querySelector("#hit-button")
 const stayBtn = document.querySelector("#stay-button")
 const messageEl = document.querySelector("#message")
-
+const cashOutBtn = document.querySelector("#cash-out-button")
+const nextBtn = document.querySelector("#next-hand")
 
 /*---------------- Event Listeners------------------*/
 
@@ -297,6 +298,8 @@ function enterBet(evt) {
   decreaseBtn.setAttribute("hidden", "")
   betBtn.setAttribute("hidden", "")
   playSection.removeAttribute("hidden")
+  cashOutBtn.setAttribute("hidden", "")
+  nextBtn.setAttribute("hidden", "")
   newHand()
   messageEl.textContent = "Hit or Stay?"
   dealerSum = checkCardValue(computerHand)
@@ -314,6 +317,7 @@ function enterBet(evt) {
     push = true
     stayBtn.setAttribute("hidden", "")
     hitBtn.setAttribute("hidden", "")
+    
   }
   render() 
 } 
@@ -345,6 +349,10 @@ function stay(evt) {
   playerSum = checkCardValue(playerHand)
 
   dealerTotal.removeAttribute("hidden")
+
+  cashOutBtn.removeAttribute("hidden")
+  
+  nextBtn.removeAttribute("hidden") 
   
   hiddenCard.style.display = "none"
 
@@ -407,10 +415,12 @@ function nextHand(evt) {
 }
 
 function cashOut(evt) {
-  init()
-  betBtn.removeAttribute("hidden")
-  hitBtn.removeAttribute("hidden")
-  stayBtn.removeAttribute("hidden")
-  hiddenCard.style.removeProperty("display")
+  if(confirm("Are you sure you want to cashout?")) {
+    betBtn.removeAttribute("hidden")
+    hitBtn.removeAttribute("hidden")
+    stayBtn.removeAttribute("hidden")
+    hiddenCard.style.removeProperty("display")
+    init()
+  } 
   
 }
