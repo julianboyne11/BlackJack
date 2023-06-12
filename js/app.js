@@ -257,6 +257,8 @@ function shuffle(array) {
         loser = true
         hitBtn.setAttribute("hidden", "")
         stayBtn.setAttribute("hidden", "")
+        cashBtn.removeAttribute("hidden")
+        nextHandBtn.removeAttribute("hidden")
       }
       render()
     }
