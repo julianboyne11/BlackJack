@@ -251,6 +251,20 @@ h1 {
 }
 
 @media only screen and (max-width: 800px) {
+
+  h2{
+    font-size: 90%;
+  }
+
+  #message {
+    align-items: center;
+    justify-content: center;
+    font-size: 90%;
+  }
+
+  #total-credit {
+    font-size: 90%;
+  }
   body > main {
     margin: 20px;
   }
