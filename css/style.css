@@ -122,6 +122,13 @@ h1 {
   flex-direction: column;
 }
 
+.bets > #message {
+  margin-left: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
 .bets > #bet-button {
   justify-content: flex-end;
   align-items: flex-end;
@@ -149,9 +156,16 @@ h1 {
 }
 
 .increase-decrease-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   position: absolute;
   margin: 45px 0;
   border-radius: 10%;
+}
+
+.inc-dic-btn {
+  margin-top:20px;
 }
 
 #decrease-bet {
